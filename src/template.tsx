@@ -2,10 +2,14 @@ export default function Template({
 	title,
 	bgImageUrl,
 	description,
+	height,
+	width,
 }: {
 	title: string;
 	bgImageUrl: string;
 	description: string;
+	height: number;
+	width: number;
 }) {
 	console.log({ title, bgImageUrl });
 	return (
@@ -30,11 +34,11 @@ export default function Template({
 					position: "absolute",
 					top: 0,
 					left: 0,
-					width: "1575px",
-					height: "900px",
 					objectFit: "cover",
 					zIndex: -1,
 				}}
+				width={width}
+				height={height}
 			/>
 			<div
 				style={{

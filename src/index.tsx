@@ -16,15 +16,20 @@ export default {
 			params.get("description") ||
 			"Betaflight is the world's leading multi-rotor flight control software.";
 
+		const height = 900;
+		const width = 1575;
+
 		return new ImageResponse(
 			<Template
 				title={title}
 				bgImageUrl={bgImageUrl}
 				description={description}
+				height={height}
+				width={width}
 			/>,
 			{
-				width: 1575,
-				height: 900,
+				width,
+				height,
 				fonts: [
 					{
 						name: "Geist-Bold",

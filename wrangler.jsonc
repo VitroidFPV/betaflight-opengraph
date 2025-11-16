@@ -1,6 +1,6 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "betaflight-opengraph",
-  "compatibility_date": "2025-04-03",
-  "main": "./src/index.ts"
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "betaflight-opengraph",
+	"compatibility_date": "2025-04-03",
+	"main": "./src/index.ts"
 }

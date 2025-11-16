@@ -6,8 +6,7 @@ export default {
 		const params = new URLSearchParams(new URL(request.url).search);
 
 		const title =
-			params.get("title") ||
-			"Pushing the Limits of UAV Performance with Betaflight";
+			params.get("title") || "Pushing the Limits of UAV Performance";
 		const bgImageUrl = new URL("/og-bg.png", request.url).toString();
 		const description =
 			params.get("description") ||

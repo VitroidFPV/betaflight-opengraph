@@ -7,7 +7,9 @@ export default {
 
 		const title =
 			params.get("title") || "Pushing the Limits of UAV Performance";
-		const bgImageUrl = new URL("/og-bg.png", request.url).toString();
+
+		const bgImageUrl = `${request.url}/og-bg.png`;
+
 		const description =
 			params.get("description") ||
 			"Betaflight is the world's leading multi-rotor flight control software.";

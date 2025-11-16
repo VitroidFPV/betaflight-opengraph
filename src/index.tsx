@@ -1,29 +1,25 @@
 import { ImageResponse, loadGoogleFont } from "workers-og";
-// Import image as base64 data URL for workers compatibility
-import bgImageUrl from "../public/og-bg.png?url";
 import Template from "./template";
 
 export default {
 	async fetch(request: Request): Promise<Response> {
-		const url = new URL(request.url);
-		const params = url.searchParams;
+		const params = new URLSearchParams(new URL(request.url).search);
 
 		const title =
 			params.get("title") || "Pushing the Limits of UAV Performance";
+
+		const url = new URL(request.url);
+		const baseUrl = url.origin + url.pathname.replace(/\/$/, "");
+		const bgImageUrl = `${baseUrl}/og-bg.png`;
 
 		const description =
 			params.get("description") ||
 			"Betaflight is the world's leading multi-rotor flight control software.";
 
-		// For development, make absolute URL; in production Vite bundles the asset
-		const absoluteBgUrl = bgImageUrl.startsWith("http")
-			? bgImageUrl
-			: new URL(bgImageUrl, url.origin).toString();
-
 		return new ImageResponse(
 			<Template
 				title={title}
-				bgImageUrl={absoluteBgUrl}
+				bgImageUrl={bgImageUrl}
 				description={description}
 			/>,
 			{

@@ -8,7 +8,4 @@ export default defineConfig({
 		}),
 	],
 	publicDir: "public",
-	build: {
-		assetsInlineLimit: 0, // Don't inline assets, serve them as files
-	},
 });

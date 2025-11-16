@@ -1,5 +1,11 @@
+import template from "./template.html?raw";
+
 export default {
 	fetch() {
-		return new Response(`Running in ${navigator.userAgent}!`);
+		return new Response(template, {
+			headers: {
+				"Content-Type": "text/html",
+			},
+		});
 	},
 };

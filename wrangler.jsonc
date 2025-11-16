@@ -4,7 +4,8 @@
 	"compatibility_date": "2025-04-03",
 	"main": "./src/index.tsx",
 	"assets": {
-		"directory": "./public"
+		"directory": "./public",
+		"binding": "ASSETS"
 	},
 	"observability": {
 		"enabled": false,

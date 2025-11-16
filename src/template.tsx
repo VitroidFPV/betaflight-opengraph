@@ -17,14 +17,25 @@ export default function Template({
 				justifyContent: "space-between",
 				height: "100%",
 				width: "100%",
-				backgroundImage: `url(${bgImageUrl})`,
-				backgroundSize: "cover",
-				backgroundPosition: "center",
 				padding: "10rem",
 				color: "white",
 				fontFamily: "Geist-Regular, sans-serif",
+				position: "relative",
 			}}
 		>
+			<img
+				src={bgImageUrl}
+				alt=""
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "1575px",
+					height: "900px",
+					objectFit: "cover",
+					zIndex: -1,
+				}}
+			/>
 			<div
 				style={{
 					display: "flex",

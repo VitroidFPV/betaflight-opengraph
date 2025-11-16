@@ -11,7 +11,6 @@ export default function Template({
 	height: number;
 	width: number;
 }) {
-	console.log({ title, bgImageUrl });
 	return (
 		<div
 			style={{

@@ -9,7 +9,7 @@ export default {
 			params.get("title") || "Pushing the Limits of UAV Performance";
 
 		const baseUrl = new URL(request.url).origin;
-		const bgImageUrl = `https://betaflight-opengraph.vitroid05.workers.dev/og-bg.png`;
+		const bgImageUrl = `${baseUrl}/og-bg.png`;
 
 		const description =
 			params.get("description") ||

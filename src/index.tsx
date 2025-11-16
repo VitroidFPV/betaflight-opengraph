@@ -8,7 +8,7 @@ export default {
 		const title =
 			params.get("title") || "Pushing the Limits of UAV Performance";
 
-		const bgImageUrl = `${request.url}/og-bg.png`;
+		const bgImageUrl = `${request.url}/og-bg.png`.replace("//", "/");
 
 		const description =
 			params.get("description") ||

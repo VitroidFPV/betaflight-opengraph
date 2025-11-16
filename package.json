@@ -1,0 +1,17 @@
+{
+  "name": "betaflight-opengraph",
+  "private": "false",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "npm run build && vite preview",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.14.2",
+    "vite": "^7.2.2",
+    "wrangler": "^4.48.0"
+  }
+}

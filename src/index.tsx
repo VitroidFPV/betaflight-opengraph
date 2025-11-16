@@ -9,7 +9,7 @@ export default {
 			params.get("title") || "Pushing the Limits of UAV Performance";
 
 		const baseUrl = new URL(request.url).origin;
-		const bgImageUrl = `${baseUrl}/og-bg.png`;
+		const bgImageUrl = `https://www.vitroidfpv.com/uploads/images/embed_frame.png`;
 
 		const description =
 			params.get("description") ||

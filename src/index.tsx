@@ -8,8 +8,7 @@ export default {
 		const title =
 			params.get("title") || "Pushing the Limits of UAV Performance";
 
-		const url = new URL(request.url);
-		const baseUrl = url.origin + url.pathname.replace(/\/$/, "");
+		const baseUrl = new URL(request.url).origin;
 		const bgImageUrl = `${baseUrl}/og-bg.png`;
 
 		const description =

@@ -20,9 +20,10 @@ export default function Template({
 				justifyContent: "space-between",
 				height: "100%",
 				width: "100%",
-				padding: "10rem",
+				padding: "160px",
 				color: "white",
-				fontFamily: "Geist-Regular, sans-serif",
+				fontFamily: "Geist, sans-serif",
+				fontWeight: 400,
 				position: "relative",
 			}}
 		>
@@ -45,25 +46,26 @@ export default function Template({
 					flexDirection: "column",
 					alignItems: "flex-start",
 					justifyContent: "flex-start",
-					gap: "1rem",
-					marginRight: "10rem",
+					gap: "16px",
+					marginRight: "160px",
 				}}
 			>
 				<h2
 					style={{
-						fontSize: "2rem",
+						fontSize: "32px",
 						margin: 0,
 						color: "white",
+						fontWeight: 500,
 					}}
 				>
 					Betaflight Docs
 				</h2>
 				<h1
 					style={{
-						fontSize: "5rem",
-						fontFamily: "Geist-Bold, sans-serif",
+						fontSize: "80px",
 						margin: 0,
 						color: "#ffbb00",
+						fontWeight: 700,
 					}}
 				>
 					{title}
@@ -71,7 +73,9 @@ export default function Template({
 			</div>
 			<p
 				style={{
-					fontSize: "2rem",
+					fontSize: "32px",
+					margin: 0,
+					fontWeight: 400,
 				}}
 			>
 				{description}

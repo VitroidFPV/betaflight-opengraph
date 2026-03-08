@@ -1,12 +1,12 @@
 export default function Template({
 	title,
-	bgImageUrl,
+	bgImageData,
 	description,
 	height,
 	width,
 }: {
 	title: string;
-	bgImageUrl: string;
+	bgImageData: ArrayBuffer;
 	description: string;
 	height: number;
 	width: number;
@@ -28,7 +28,7 @@ export default function Template({
 			}}
 		>
 			<img
-				src={bgImageUrl}
+				src={bgImageData as unknown as string}
 				alt=""
 				style={{
 					position: "absolute",

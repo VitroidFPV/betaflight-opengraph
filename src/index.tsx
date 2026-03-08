@@ -40,9 +40,6 @@ export default {
 		const title =
 			params.get("title") || "Pushing the Limits of UAV Performance";
 
-		const baseUrl = url.origin;
-		const bgImageUrl = `${baseUrl}/og-bg.png`;
-
 		const description =
 			params.get("description") ||
 			"Betaflight is the world's leading multi-rotor flight control software.";
@@ -51,58 +48,48 @@ export default {
 		const width = 1575;
 		const fontText = `${title} ${description} Betaflight Docs`;
 
-		const originalFetch = globalThis.fetch;
-		const assetsFetch = env.ASSETS.fetch.bind(env.ASSETS);
-		globalThis.fetch = ((input: RequestInfo, init?: RequestInit) => {
-			const reqUrl = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
-			if (reqUrl.startsWith(baseUrl)) {
-				return assetsFetch(reqUrl, init);
-			}
-			return originalFetch(input, init);
-		}) as typeof fetch;
-
-		try {
-			const [geistRegular, geistMedium, geistBold] = await Promise.all([
+		const [bgImageData, geistRegular, geistMedium, geistBold] =
+			await Promise.all([
+				env.ASSETS.fetch(new URL("/og-bg.png", request.url).href).then(
+					(r) => r.arrayBuffer(),
+				),
 				loadGoogleFont("Geist", fontText, 400),
 				loadGoogleFont("Geist", fontText, 500),
 				loadGoogleFont("Geist", fontText, 700),
 			]);
 
-			return await new ImageResponse(
-				<Template
-					title={title}
-					bgImageUrl={bgImageUrl}
-					description={description}
-					height={height}
-					width={width}
-				/>,
-				{
-					width,
-					height,
-					fonts: [
-						{
-							name: "Geist",
-							data: geistRegular,
-							style: "normal",
-							weight: 400,
-						},
-						{
-							name: "Geist",
-							data: geistMedium,
-							style: "normal",
-							weight: 500,
-						},
-						{
-							name: "Geist",
-							data: geistBold,
-							style: "normal",
-							weight: 700,
-						},
-					],
-				},
-			);
-		} finally {
-			globalThis.fetch = originalFetch;
-		}
+		return new ImageResponse(
+			<Template
+				title={title}
+				bgImageData={bgImageData}
+				description={description}
+				height={height}
+				width={width}
+			/>,
+			{
+				width,
+				height,
+				fonts: [
+					{
+						name: "Geist",
+						data: geistRegular,
+						style: "normal",
+						weight: 400,
+					},
+					{
+						name: "Geist",
+						data: geistMedium,
+						style: "normal",
+						weight: 500,
+					},
+					{
+						name: "Geist",
+						data: geistBold,
+						style: "normal",
+						weight: 700,
+					},
+				],
+			},
+		);
 	},
 };

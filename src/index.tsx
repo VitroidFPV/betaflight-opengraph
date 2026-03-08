@@ -23,19 +23,9 @@ async function loadGoogleFont(
 	throw new Error(`Failed to load ${font} font data from Google Fonts`);
 }
 
-interface Env {
-	ASSETS: { fetch(input: RequestInfo, init?: RequestInit): Promise<Response> };
-}
-
 export default {
-	async fetch(request: Request, env: Env): Promise<Response> {
-		const url = new URL(request.url);
-
-		if (url.pathname !== "/") {
-			return env.ASSETS.fetch(request.url);
-		}
-
-		const params = new URLSearchParams(url.search);
+	async fetch(request: Request): Promise<Response> {
+		const params = new URLSearchParams(new URL(request.url).search);
 
 		const title =
 			params.get("title") || "Pushing the Limits of UAV Performance";
@@ -48,20 +38,15 @@ export default {
 		const width = 1575;
 		const fontText = `${title} ${description} Betaflight Docs`;
 
-		const [bgImageData, geistRegular, geistMedium, geistBold] =
-			await Promise.all([
-				env.ASSETS.fetch(new URL("/og-bg.png", request.url).href).then(
-					(r) => r.arrayBuffer(),
-				),
-				loadGoogleFont("Geist", fontText, 400),
-				loadGoogleFont("Geist", fontText, 500),
-				loadGoogleFont("Geist", fontText, 700),
-			]);
+		const [geistRegular, geistMedium, geistBold] = await Promise.all([
+			loadGoogleFont("Geist", fontText, 400),
+			loadGoogleFont("Geist", fontText, 500),
+			loadGoogleFont("Geist", fontText, 700),
+		]);
 
 		return new ImageResponse(
 			<Template
 				title={title}
-				bgImageData={bgImageData}
 				description={description}
 				height={height}
 				width={width}

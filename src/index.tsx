@@ -23,15 +23,25 @@ async function loadGoogleFont(
 	throw new Error(`Failed to load ${font} font data from Google Fonts`);
 }
 
+interface Env {
+	ASSETS: { fetch(input: RequestInfo, init?: RequestInit): Promise<Response> };
+}
+
 export default {
-	async fetch(request: Request): Promise<Response> {
+	async fetch(request: Request, env: Env): Promise<Response> {
 		const params = new URLSearchParams(new URL(request.url).search);
 
 		const title =
 			params.get("title") || "Pushing the Limits of UAV Performance";
 
-		const baseUrl = new URL(request.url).origin;
-		const bgImageUrl = `${baseUrl}/og-bg.png`;
+		const bgImageRes = await env.ASSETS.fetch(new URL("/og-bg.png", request.url).href);
+		const bgImageBuf = await bgImageRes.arrayBuffer();
+		const bytes = new Uint8Array(bgImageBuf);
+		let binary = "";
+		for (let i = 0; i < bytes.length; i++) {
+			binary += String.fromCharCode(bytes[i]);
+		}
+		const bgImageUrl = `data:image/png;base64,${btoa(binary)}`;
 
 		const description =
 			params.get("description") ||
